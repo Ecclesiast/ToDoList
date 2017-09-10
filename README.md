@@ -18,4 +18,4 @@ In project folder in `cmd.exe` run `node server`.
 
 ## Database
 
-Database used in this project called `ToDo`
+The name of MongoDB database used in this project called `ToDo`.
