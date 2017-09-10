@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Task = require('./database/task.js');
 
 var bodyParser = require('body-parser');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://localhost:27017/ToDo');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
