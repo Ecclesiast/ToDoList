@@ -1,0 +1,147 @@
+<!DOCTYPE>
+<html ng-app="myTask">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <title>Test</title>
+  </head>
+  <body>
+    <style type="text/css">
+    body {
+      background: url(img/pic.jpg);
+    }
+    .task {
+      display: inline-block;
+    }
+    .tasklist {
+      margin-left: 30px;
+      margin-top: 10px;
+    }
+    span {
+      font-style: italic;
+      font-weight: bold;
+    }
+    .btn {
+      margin: 7px;
+    }
+    ul {
+      list-style: none;
+      min-width: 250px;
+      width: auto;
+      max-width: 50%;
+      border: 1px black solid;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 15px;
+      padding-left: 0;
+      z-index: 5;
+    }
+    li {
+      border-radius: 10px;
+      margin: 7px;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+
+    li:nth-child(odd) {
+        background-color: #E0FFFF;
+    }
+
+    li:nth-child(even) {
+      background-color: #FAFAD2;
+    }
+
+    li:last-child {
+      background: rgba(0, 0, 0, 0);
+      border-radius: 10px;
+    }
+    </style>
+    <div class="tasklist" ng-controller="TaskCtrl">
+      <table>
+        <tr>
+          <td>Title: </td>
+          <td><input class="form-control",  ng-model="task.title"></td>
+        </tr>
+        <tr>
+          <td>Deadline: </td>
+          <td><input class="form-control",  ng-model="task.deadline"></td>
+        </tr>
+        <tr>
+          <td>Status: </td>
+          <td><input class="form-control",  ng-model="task.status"></td>
+        </tr>
+        <tr>
+          <td>Category: </td>
+          <td><input class="form-control",  ng-model="task.category"></td>
+        </tr>
+        <tr>
+          <td>Tags: </td>
+          <td>
+            <select size="3", multiple name="tags[]", ng-model="task.tags">
+              <option value="scrum"> scrum </option>
+              <option value="urgent"> urgent </option>
+              <option value="important"> important </option>
+            </select>
+
+          </td>
+        </tr>
+        <tr>
+          <td>Description: </td>
+          <td><textarea class="form-control" rows="10" cols="45" name="description" ng-model="task.description"></textarea></td>
+        </tr>
+        <tr>
+          <td>Is Urgent? </td>
+          <td><input type="checkbox" name="is_urgent" ng-model="task.is_urgent" ng-true-value="'Срочно'" ng-false-value="'Несрочно'"></td>
+        </tr>
+        <tr>
+          <td>Creator: </td>
+          <td>
+              <select class="form-control" name="creator" ng-model="task.creatorname">
+                <option value="Principal Jake">Principal Jake</option>
+                <option value="Spider Man">Spider Man</option>
+                <option value="Peter">Peter</option>
+                <option value="Me">Me</option>
+              </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Doer: </td>
+          <td>
+            <select class="form-control" name="user" ng-model="task.username">
+            <option value="John">John</option>
+            <option value="Abraham">Abraham</option>
+            <option value="Samuel">Samuel</option>
+            <option value="Denis">Denis</option>
+            <option value="Bruce">Bruce</option>
+            <option value="Andrew">Andrew</option>
+            <option value="Me">Me</option>
+            <option value="Shane">Shane</option>
+            </select>
+        </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="btn btn-primary" style="margin-top: 15px" ng-click="addTask()">Save</button>
+          </td>
+          <td><button class="btn btn-info" style="margin-top: 15px" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" style="margin-top: 15px" ng-click="deselect()">Clear</button> </td>
+        </tr>
+      </table>
+
+      <div class="task">
+      <ul ng-repeat="task in tasklist">
+        <li> <span>Title:</span> {{task.title}} </li>
+        <li> <span>Deadline:</span> {{task.deadline}}</li>
+        <li> <span>Status:</span> {{task.status}}</li>
+        <li> <span>Category:</span> {{task.category}}</li>
+        <li> <span>Tags:</span> {{task.tags}}</li>
+        <li> <span>Urgent:</span> {{task.is_urgent}}</li>
+        <li> <span>Creator:</span> {{task.creatorname}}</li>
+        <li> <span>Doer:</span> {{task.username}}</li>
+        <li> <span>Description:</span> {{task.description}}</li>
+        <li><button class="btn btn-danger" ng-click="remove(task._id)">Remove</button>&nbsp;&nbsp;<button class="btn btn-warning" ng-click="edit(task._id)">Edit</button></li>
+      </ul>
+      </div>
+          </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="controllers/TaskController.js"></script>
+  </body>
+</html>
